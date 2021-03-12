@@ -5,6 +5,4 @@ export interface Registro{
     nombre:string;
     telefono:number;
     correo:string;
-
-
 }
