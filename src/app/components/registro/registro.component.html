@@ -1,1 +1,57 @@
-<p>registro works!</p>
+<h2>Registro </h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="submitFormulario()" autocomplete="off" [formGroup]="miFormulario">
+            <div class="row mb-3">
+                <div class="col-sm-9">
+                    <label class="col-sm-3 co-form-label">Nombre</label>
+                    <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
+                    <span *ngIf="campoNoValido('nombre')" class="form-text text-danger"> Debe ser en formato de nombre y
+                        apellido</span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-9">
+                    <label class="col-sm-3 co-form-label">Email</label>
+                    <input type="email" class="form-control" formControlName="email" autocomplete="off"
+                        placeholder="Email">
+                    <span *ngIf="campoNoValido('email')" class="form-text text-danger"> {{emailErrorMsg}}</span>
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-9">
+                    <label class="col-sm-3 co-form-label">Documento</label>
+                    <input type="text" class="form-control" formControlName="username" placeholder="Username">
+                    <span *ngIf="campoNoValido('username')" class="form-text text-danger"> El username no puede ser
+                        Papo </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-9">
+                    <label class="col-sm-3 co-form-label">Contraseña</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                    <span *ngIf="campoNoValido('password')" class="form-text text-danger">Debe ser de mínimo 6
+                        caracteres </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-9">
+                    <label class="col-sm-3 co-form-label">Contraseña</label>
+                    <input type="password" class="form-control" formControlName="password2"
+                        placeholder="Confirmar Contraseña">
+                    <span *ngIf="campoNoValido('password2')" class="form-text text-danger"> Las contraseñas no coinciden
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary float-end"
+                        [disabled]="miFormulario.pending">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ConsultaRegistradosComponent } from './components/consulta-registrados/consulta-registrados.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
-    ConsultaRegistradosComponent
+    ConsultaRegistradosComponent,
+    SidemenuComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

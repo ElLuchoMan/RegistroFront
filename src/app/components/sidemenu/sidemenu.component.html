@@ -1,0 +1,8 @@
+<h2>Formularios</h2>
+<hr>
+<ul class="list-group">
+    <li *ngFor="let menu of menu" class="list-group-item" [routerLink]="[menu.ruta]"
+        routerLinkActive="active">
+        {{menu.texto}}
+    </li>
+</ul>
