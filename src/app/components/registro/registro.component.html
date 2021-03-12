@@ -5,7 +5,7 @@
     <div class="col">
         <form (ngSubmit)="submitFormulario()" autocomplete="off" [formGroup]="miFormulario">
             <div class="row mb-3">
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     <label class="col-sm-3 co-form-label">Nombre</label>
                     <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
                     <span *ngIf="campoNoValido('nombre')" class="form-text text-danger"> Debe ser en formato de nombre y
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     <label class="col-sm-3 co-form-label">Email</label>
                     <input type="email" class="form-control" formControlName="email" autocomplete="off"
                         placeholder="Email">
@@ -22,32 +22,35 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-sm-9">
+                <div class="col-sm-12">
+                    <label class="col-sm-3 co-form-label">Tipo de documento</label>
+                    <select class="form-control" placeholder="tipo de doc" formControlName="tipoDocumento">
+                        <option value=" ">--Seleccione tipo de documento-- </option>
+                        <option *ngFor="let tipo of tipoDocumento" [value]="tipo|lowercase">{{tipo}}</option>
+                    </select>
+                    <span *ngIf="campoNoValido('tipoDocumento')" class="form-text text-danger">Debe seleccionar el tipo
+                        de documento </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-12">
                     <label class="col-sm-3 co-form-label">Documento</label>
-                    <input type="text" class="form-control" formControlName="username" placeholder="Username">
-                    <span *ngIf="campoNoValido('username')" class="form-text text-danger"> El username no puede ser
-                        Papo </span>
+                    <input type="text" class="form-control" formControlName="documento" placeholder="Documento">
+                    <span *ngIf="campoNoValido('documento')" class="form-text text-danger">El documento no puede ser
+                        vacío </span>
                 </div>
             </div>
+
             <div class="row mb-3">
-                <div class="col-sm-9">
-                    <label class="col-sm-3 co-form-label">Contraseña</label>
-                    <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
-                    <span *ngIf="campoNoValido('password')" class="form-text text-danger">Debe ser de mínimo 6
-                        caracteres </span>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-9">
-                    <label class="col-sm-3 co-form-label">Contraseña</label>
-                    <input type="password" class="form-control" formControlName="password2"
-                        placeholder="Confirmar Contraseña">
-                    <span *ngIf="campoNoValido('password2')" class="form-text text-danger"> Las contraseñas no coinciden
+                <div class="col-sm-12">
+                    <label class="col-sm-3 co-form-label">Teléfono</label>
+                    <input type="telefono" class="form-control" formControlName="telefono" placeholder="Teléfono">
+                    <span *ngIf="campoNoValido('telefono')" class="form-text text-danger">Teléfono no puede estar vacío
                     </span>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     <button type="submit" class="btn btn-primary float-end"
                         [disabled]="miFormulario.pending">Crear</button>
                 </div>
