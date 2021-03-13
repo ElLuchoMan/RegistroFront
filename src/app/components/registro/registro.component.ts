@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { RegistroService } from 'src/app/services/registro.service';
 import { ValidatorService } from 'src/app/services/validator.service';
 import { Registro } from '../../interfaces/registro.interface';
+
 
 @Component({
   selector: 'app-registro',
@@ -37,7 +39,7 @@ export class RegistroComponent implements OnInit {
     return ''
   }
 
-  constructor(private fb: FormBuilder, private validatorService: ValidatorService, private registroService: RegistroService) { }
+  constructor(private fb: FormBuilder, private validatorService: ValidatorService, private registroService: RegistroService, private toastr: ToastrService) { }
   ngOnInit(): void {
   }
   campoNoValido(campo: string) {
@@ -53,9 +55,11 @@ export class RegistroComponent implements OnInit {
     }
     this.registroService.setRegistro(registro).subscribe(data => {
       // console.log(data);
+      this.toastr.success('La información ya se almacenó en la base de datos.', '¡Registro creado!');
       this.miFormulario.reset();
     }, error => {
       console.log(error);
+      this.toastr.error('Se presentó un error, verifique la información o la conexión.', 'Error');
     });
 
   }
