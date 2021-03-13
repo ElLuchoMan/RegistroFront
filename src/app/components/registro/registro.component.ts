@@ -11,6 +11,7 @@ import { Registro } from '../../interfaces/registro.interface';
   ]
 })
 export class RegistroComponent implements OnInit {
+  tipoSeleccionado: any = null;
   tipoDocumento: any[] = [
     'Cédula de Ciudadanía',
     'Cédula de Extranjería',
