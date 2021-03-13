@@ -21,17 +21,17 @@
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Vuela?</th>
-                                    <th>Color</th>
+                                    <th>Documento</th>
                                     <th>Telefono</th>
+                                    <th>Correo</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-user>
                                 <tr>
                                     <td>{{user.nombre}}</td>
                                     <td>{{user.documento}}</td>
-                                    <td>{{user.correo}}</td>
                                     <td>{{user.telefono}}</td>
+                                    <td>{{user.correo}}</td>
                                 </tr>
                             </ng-template>
                         </p-table>
