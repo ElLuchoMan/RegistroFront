@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegistroService } from 'src/app/services/registro.service';
 import { ValidatorService } from 'src/app/services/validator.service';
+import { Registro } from '../../interfaces/registro.interface';
 
 @Component({
   selector: 'app-registro',
@@ -17,17 +19,15 @@ export class RegistroComponent implements OnInit {
   ];
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.pattern(this.validatorService.nombreApellidoPattern)]],
-    email: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
+    correo: ['', [Validators.required, Validators.pattern(this.validatorService.emailPattern)]],
     tipoDocumento: ['', [Validators.required]],
     documento: ['', [Validators.required]],
     telefono: ['', [Validators.required]],
-  }, {
-    validators: [this.validatorService.camposIguales('password', 'password2')]
   })
   get emailErrorMsg(): string {
-    const errors = this.miFormulario.get('email')?.errors;
+    const errors = this.miFormulario.get('correo')?.errors;
     if (errors?.required) {
-      return 'El email es obligatorio';
+      return 'El correo es obligatorio';
     } else if (errors?.pattern) {
       return 'El valor ingresado no tiene formato de correo';
     } else if (errors?.emailTomado) {
@@ -36,14 +36,26 @@ export class RegistroComponent implements OnInit {
     return ''
   }
 
-  constructor(private fb: FormBuilder, private validatorService: ValidatorService) { }
+  constructor(private fb: FormBuilder, private validatorService: ValidatorService, private registroService: RegistroService) { }
   ngOnInit(): void {
   }
   campoNoValido(campo: string) {
     return this.miFormulario.get(campo)?.invalid && this.miFormulario.get(campo)?.touched;
   }
   submitFormulario() {
-    this.miFormulario.markAllAsTouched();
+    const registro: Registro = {
+      nombre: this.miFormulario.get('nombre')?.value,
+      correo: this.miFormulario.get('correo')?.value,
+      tipoDocumento: this.miFormulario.get('tipoDocumento')?.value,
+      documento: this.miFormulario.get('documento')?.value,
+      telefono: this.miFormulario.get('telefono')?.value,
+    }
+    this.registroService.setRegistro(registro).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
+
   }
 
 

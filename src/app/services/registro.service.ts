@@ -13,8 +13,7 @@ export class RegistroService {
   getListaRegistros(): Observable<any> {
     return this.http.get(this.baseUrl + this.apiUrl);
   }
-  setComentario(registro: Registro): Observable<any> {
+  setRegistro(registro: Registro): Observable<any> {
     return this.http.post(this.baseUrl + this.apiUrl, registro);
   }
-
 }

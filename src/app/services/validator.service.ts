@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -7,26 +10,13 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 export class ValidatorService {
   public nombreApellidoPattern: string = '([a-zA-Z]+) ([a-zA-Z]+)'
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-  constructor() { }
-  // noPuedeSerLuchoman(control: FormControl): ValidationErrors | null {
-  //   const valor: string = control.value?.trim().toLowerCase();
-  //   if (valor === 'papo') {
-  //     return {
-  //       noLuchoman: true
-  //     }
-  //   }
-  //   return null
-  // }
-  camposIguales(campo1: string, campo2: string) {
-    return (formGroup: AbstractControl): ValidationErrors | null => {
-      const pass1 = formGroup.get(campo1)?.value;
-      const pass2 = formGroup.get(campo2)?.value;
-      if (pass1 !== pass2) {
-        formGroup.get(campo2)?.setErrors({ noIguales: true });
-        return { noIguales: true }
-      }
-      formGroup.get(campo2)?.setErrors(null);
-      return null;
-    }
+  constructor(private http: HttpClient) { }
+  validate(control: AbstractControl): Observable<ValidationErrors | null> {
+    const email = control.value;
+    console.log(email);
+    return this.http.get<any[]>(`http://localhost:3000/usuarios?q=${email}`).pipe(delay(3000), map(resp => {
+      return (resp.length === 0) ? null : { emailTomado: true }
+    })
+    )
   }
 }
