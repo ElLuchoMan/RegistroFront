@@ -51,7 +51,8 @@ export class RegistroComponent implements OnInit {
       telefono: this.miFormulario.get('telefono')?.value,
     }
     this.registroService.setRegistro(registro).subscribe(data => {
-      console.log(data);
+      // console.log(data);
+      this.miFormulario.reset();
     }, error => {
       console.log(error);
     });

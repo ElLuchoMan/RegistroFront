@@ -15,7 +15,7 @@ export class ConsultaRegistradosComponent implements OnInit {
 
   getRegistro() {
     this.registroService.getListaRegistros().subscribe((resp) => {
-      console.log(resp);
+      // console.log(resp);
       this.listaRegistros = resp;
     });
   }
