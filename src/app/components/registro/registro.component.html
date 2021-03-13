@@ -6,7 +6,7 @@
         <form (ngSubmit)="submitFormulario()" autocomplete="off" [formGroup]="miFormulario">
             <div class="row mb-3">
                 <div class="col-sm-12">
-                    <label class="col-sm-3 co-form-label">Nombre</label>
+                    <label class="col-sm-3 co-form-label">Nombre y Apellido</label>
                     <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre">
                     <span *ngIf="campoNoValido('nombre')" class="form-text text-danger"> Debe ser en formato de nombre y
                         apellido</span>
@@ -26,7 +26,7 @@
                     <label class="col-sm-3 co-form-label">Tipo de documento</label>
                     <select class="form-select" placeholder="tipo de doc" formControlName="tipoDocumento">
                         <option value=" ">--Seleccione tipo de documento-- </option>
-                        <option *ngFor="let tipo of tipoDocumento" [value]="tipo|lowercase">{{tipo}}</option>
+                        <option *ngFor="let tipo of tipoDocumento" [value]="tipo|titlecase">{{tipo}}</option>
                     </select>
                     <span *ngIf="campoNoValido('tipoDocumento')" class="form-text text-danger">Debe seleccionar el tipo
                         de documento </span>
@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <button type="submit" class="btn btn-primary float-end"
-                        [disabled]="miFormulario.pending"> Crear</button>
+                        [disabled]="miFormulario.invalid"> Crear</button>
                 </div>
             </div>
         </form>
