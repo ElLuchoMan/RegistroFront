@@ -9,7 +9,7 @@ import { Registro } from '../../interfaces/registro.interface';
   ]
 })
 export class ConsultaRegistradosComponent implements OnInit {
-
+  ordenarPor: string = 'sin valor';
   listaRegistros: Registro[] = [];
   constructor(private registroService: RegistroService) { }
 
@@ -23,6 +23,9 @@ export class ConsultaRegistradosComponent implements OnInit {
   ngOnInit(): void {
     this.getRegistro();
 
+  }
+  cambiarOrden(valor: string) {
+    this.ordenarPor = valor;
   }
 
 }

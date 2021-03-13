@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistroComponent } from './components/registro/registro.component';
 import { ConsultaRegistradosComponent } from './components/consulta-registrados/consulta-registrados.component';
 import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
+import { OrdenarPipe } from './pipes/ordenar.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
     ConsultaRegistradosComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    OrdenarPipe
   ],
   imports: [
     BrowserModule,
