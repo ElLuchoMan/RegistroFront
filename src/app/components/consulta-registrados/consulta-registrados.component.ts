@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistroService } from '../../services/registro.service';
+import { Registro } from '../../interfaces/registro.interface';
 
 @Component({
   selector: 'app-consulta-registrados',
@@ -9,19 +10,19 @@ import { RegistroService } from '../../services/registro.service';
 })
 export class ConsultaRegistradosComponent implements OnInit {
 
+  listaRegistros: Registro[] = [];
   constructor(private registroService: RegistroService) { }
 
-  getRegistros() {
-    this.registroService.getRegistros()
-      .subscribe(resp => {
-        console.log(resp);
-      }, error => {
-        console.log(error);
-      });
+  getRegistro() {
+    this.registroService.getListaRegistros().subscribe((resp) => {
+      console.log(resp);
+      this.listaRegistros = resp;
+    });
   }
 
   ngOnInit(): void {
-    this.getRegistros();
+    this.getRegistro();
+
   }
 
 }

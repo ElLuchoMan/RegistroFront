@@ -14,10 +14,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>user.nombre</td>
-                            <td>user.correo</td>
-                            <td>user.telefono</td>
+                        <tr *ngFor="let user of listaRegistros">
+                            <td>{{user.nombre}}</td>
+                            <td>{{user.correo}}</td>
+                            <td>{{user.telefono}}</td>
                         </tr>
                     </tbody>
                 </table>
