@@ -10,9 +10,9 @@ import { ValidatorService } from 'src/app/services/validator.service';
 })
 export class RegistroComponent implements OnInit {
   tipoDocumento: any[] = [
-    'Cédula de ciudadanía',
-    'Cédula de extranjería',
-    'Tarjeta de identidad',
+    'Cédula de Ciudadanía',
+    'Cédula de Extranjería',
+    'Tarjeta de Identidad',
     'Pasaporte',
   ];
   miFormulario: FormGroup = this.fb.group({
