@@ -10,7 +10,7 @@ export class RegistroService {
   private apiUrl = "api/registro/"
   constructor(private http: HttpClient) { }
   getRegistros(): Observable<any> {
-    return this.http.get(this.baseUrl + this.baseUrl);
+    return this.http.get(this.baseUrl + this.apiUrl);
   }
 
 }
